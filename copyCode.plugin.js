@@ -86,7 +86,7 @@ copyCode.prototype.stop = function () {
 };
 copyCode.prototype.unload = function () {
   this.remove();
-}
+};
 copyCode.prototype.disable = function () {
   this.remove();
 };
