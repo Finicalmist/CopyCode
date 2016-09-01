@@ -12,6 +12,9 @@ copyCode.prototype.copyButton = function () {
       });
       $(this).append("<button class='copybutton'>Copy</button>");
       $(this).find(".copybutton").css({
+        "color": "#839496",
+        "border": "2px solid #282b30",
+        "background-color": "#2e3136",
         "position": "absolute",
         "right": "0",
         "bottom": "0"
