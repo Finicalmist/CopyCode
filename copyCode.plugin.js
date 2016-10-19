@@ -3,7 +3,7 @@
 var copyCode = function () {};
 
 copyCode.prototype.copyButton = function () {
-  $("code.hljs").each(function(){
+  setTimeout(function () {$("code.hljs").each(function(){
 
     if (!$(this).find('.copybutton').length) {
 
@@ -36,8 +36,7 @@ copyCode.prototype.copyButton = function () {
         $(this).show();
       });
     }
-  });
-
+  });}, 10);
 };
 
 copyCode.prototype.start = function () {
