@@ -4,11 +4,11 @@ var copyCode = function() {};
 
 copyCode.prototype.inject = function() {
   $("code.hljs").each(function() {
-    if (!$(this).find('.copy-button').length) {
+    if (!$(this).find('.copybutton').length) {
       $(this).css({
         "position": "relative"
       });
-      var button = $("<button>Copy</button>").addClass("copy-button").css({
+      var button = $("<button>Copy</button>").addClass("copybutton").css({
         "color": "#839496",
         "border": "2px solid #282b30",
         "background-color": "#2e3136",
@@ -74,7 +74,7 @@ copyCode.prototype.remove = function() {
   $("code.hljs").css({
     "position": ""
   });
-  $(".copy-button").remove();
+  $(".copybutton").remove();
 };
 
 copyCode.prototype.stop = function() {};
