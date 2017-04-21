@@ -1,17 +1,14 @@
 //META{"name":"copyCode"}*//
 
-var copyCode = function () {};
+var copyCode = function() {};
 
-copyCode.prototype.copyButton = function () {
-  setTimeout(function () {$("code.hljs").each(function(){
-
-    if (!$(this).find('.copybutton').length) {
-
+copyCode.prototype.inject = function() {
+  $("code.hljs").each(function() {
+    if (!$(this).find('.copy-button').length) {
       $(this).css({
         "position": "relative"
       });
-      $(this).append("<button class='copybutton'>Copy</button>");
-      $(this).find(".copybutton").css({
+      var button = $("<button>Copy</button>").addClass("copy-button").css({
         "color": "#839496",
         "border": "2px solid #282b30",
         "background-color": "#2e3136",
@@ -19,76 +16,67 @@ copyCode.prototype.copyButton = function () {
         "right": "0",
         "bottom": "0"
       });
-        $(this).find(".copybutton").click(function(){
+      button.click(function() {
         $(this).hide();
-        var copytext = $(this).parent()[0];
+        var text = $(this).parent()[0];
         var range = document.createRange();
-        range.selectNode(copytext);
+        range.selectNode(text);
         window.getSelection().addRange(range);
         try {
-          var successful = document.execCommand('copy');
-          var msg = successful ? 'successful' : 'unsuccessful';
-          //console.log('Copy command was ' + msg);
-        } catch(err) {
-          //console.log('Oops, unable to copy');
+          document.execCommand('copy');
+        } catch (err) {
+
         }
         window.getSelection().removeAllRanges();
         $(this).show();
       });
+      $(this).append(button);
     }
-  });}, 10);
+  });
 };
 
-copyCode.prototype.start = function () {
-  this.copyButton();
-};
-copyCode.prototype.load = function () {
-  this.copyButton();
-};
-copyCode.prototype.enable = function () {
-  this.copyButton();
+copyCode.prototype.observer = function(e) {
+  this.inject();
 };
 
-copyCode.prototype.onSwitch = function () {
-  this.copyButton();
-};
-copyCode.prototype.onMessage = function () {
-  this.copyButton();
+copyCode.prototype.start = function() {
+  this.inject();
 };
 
-copyCode.prototype.getSettingsPanel = function () {
-    return "<h3>Go away!</h3>";
+copyCode.prototype.load = function() {};
+copyCode.prototype.enable = function() {};
+
+copyCode.prototype.onSwitch = function() {};
+
+copyCode.prototype.onMessage = function() {};
+
+copyCode.prototype.getSettingsPanel = function() {
+  return "";
 };
 
-copyCode.prototype.getName = function () {
-    return "Copy Code Plugin";
+copyCode.prototype.getName = function() {
+  return "Copy Code Plugin";
 };
 
-copyCode.prototype.getDescription = function () {
-    return "Copies Code from Code Blocks with a Button";
+copyCode.prototype.getDescription = function() {
+  return "Copies Code from Code Blocks with a Button";
 };
 
-copyCode.prototype.getVersion = function () {
-    return "1.0";
+copyCode.prototype.getVersion = function() {
+  return "2.0";
 };
 
-copyCode.prototype.getAuthor = function () {
-    return "Finicalmist";
+copyCode.prototype.getAuthor = function() {
+  return "Finicalmist";
 };
 
-copyCode.prototype.remove = function () {
+copyCode.prototype.remove = function() {
   $("code.hljs").css({
     "position": ""
   });
-  $(".copybutton").remove();
+  $(".copy-button").remove();
 };
 
-copyCode.prototype.stop = function () {
-  this.remove();
-};
-copyCode.prototype.unload = function () {
-  this.remove();
-};
-copyCode.prototype.disable = function () {
-  this.remove();
-};
+copyCode.prototype.stop = function() {};
+copyCode.prototype.unload = function() {};
+copyCode.prototype.disable = function() {};
