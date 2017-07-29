@@ -3,36 +3,38 @@
 var copyCode = function() {};
 
 copyCode.prototype.inject = function() {
-  $("code.hljs").each(function() {
-    if (!$(this).find('.copybutton').length) {
-      $(this).css({
-        "position": "relative"
-      });
-      var button = $("<button>Copy</button>").addClass("copybutton").css({
-        "color": "#839496",
-        "border": "2px solid #282b30",
-        "background-color": "#2e3136",
-        "position": "absolute",
-        "right": "0",
-        "bottom": "0"
-      });
-      button.click(function() {
-        $(this).hide();
-        var text = $(this).parent()[0];
-        var range = document.createRange();
-        range.selectNode(text);
-        window.getSelection().addRange(range);
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-
-        }
-        window.getSelection().removeAllRanges();
-        $(this).show();
-      });
-      $(this).append(button);
-    }
-  });
+  setTimeout(function(){
+	  $("code.hljs").each(function() {
+		if (!$(this).find('.copybutton').length) {
+		  $(this).css({
+			"position": "relative"
+		  });
+		  var button = $("<button>Copy</button>").addClass("copybutton").css({
+			"color": "#839496",
+			"border": "2px solid #282b30",
+			"background-color": "#2e3136",
+			"position": "absolute",
+			"right": "0",
+			"bottom": "0"
+		  });
+		  button.click(function() {
+			$(this).hide();
+			var text = $(this).parent()[0];
+			var range = document.createRange();
+			range.selectNode(text);
+			window.getSelection().addRange(range);
+			try {
+			  document.execCommand('copy');
+			} catch (err) {
+			  console.log(err);
+			}
+			window.getSelection().removeAllRanges();
+			$(this).show();
+		  });
+		  $(this).append(button);
+		}
+	  });
+  }, 100);
 };
 
 copyCode.prototype.observer = function(e) {
