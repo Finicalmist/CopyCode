@@ -1,7 +1,15 @@
 //META{"name":"copyCode"}*//
 //Updated by Creatable so it actually works
 var copyCode = function() {};
+var hidecopy = `
+.copybutton{
+    display: none;
+}
 
+.hljs:hover .copybutton{
+    display: inline-block;
+}`;
+BdApi.injectCSS("copycode-css", hidecopy)
 copyCode.prototype.inject = function() {
   setTimeout(function(){
 	  $("code.hljs").each(function() {
