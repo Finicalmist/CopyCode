@@ -1,5 +1,5 @@
 //META{"name":"copyCode"}*//
-
+//Updated by Creatable so it actually works
 var copyCode = function() {};
 
 copyCode.prototype.inject = function() {
@@ -20,6 +20,7 @@ copyCode.prototype.inject = function() {
 		  button.click(function() {
 			$(this).hide();
 			var text = $(this).parent()[0];
+			window.getSelection().removeAllRanges()
 			var range = document.createRange();
 			range.selectNode(text);
 			window.getSelection().addRange(range);
